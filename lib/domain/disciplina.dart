@@ -1,46 +1,56 @@
-import 'dart:convert';
-
-Disciplina disciplinaFromJson(String str) => Disciplina.fromJson(json.decode(str));
-
-String disciplinaToJson(Disciplina data) => json.encode(data.toJson());
-
 class Disciplina {
-    int id;
-    String nome;
-    String professor;
-    int cargaHoraria;
-    int sala;
-    int periodo;
-    String codigo;
+    int id = 0;
+    String nome = '';
+    String professor = '';
+    int cargaHoraria = 0;
+    int sala = 0;
+    int periodo = 0;
+    String codigo = '';
+    
+    static const String disciplinaTable = "disciplinas_table";
+    static const String idColumn = "id";
+    static const String nomeColumn = "nome";
+    static const String professorColumn = "professor";
+    static const String cargaHorariaColumn = "cargaHoraria";
+    static const String salaColumn = "sala";
+    static const String periodoColumn = "periodo";
+    static const String codigoColumn = "codigo";
 
     Disciplina({
-        required this.id,
+        this.id = 0,
         required this.nome,
         required this.professor,
         required this.cargaHoraria,
         required this.sala,
         required this.periodo,
-        required this.codigo,
-    });
-
-    factory Disciplina.fromJson(Map<String, dynamic> json) => Disciplina(
-        id: json["id"],
-        nome: json["nome"],
-        professor: json["professor"],
-        cargaHoraria: json["cargaHoraria"],
-        sala: json["sala"],
-        periodo: json["periodo"],
-        codigo: json["codigo"],
+        required this.codigo,}
     );
 
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "nome": nome,
-        "professor": professor,
-        "cargaHoraria": cargaHoraria,
-        "sala": sala,
-        "periodo": periodo,
-        "codigo": codigo,
-    };
+    Disciplina.fromMap(Map map){
+        id = map[idColumn];
+        nome = map[nomeColumn];
+        professor = map[professorColumn];
+        cargaHoraria = map[cargaHorariaColumn];
+        sala = map[salaColumn];
+        periodo = map[periodoColumn];
+        codigo = map[codigoColumn];
+    }
+
+    Map<String, dynamic> toMap() {
+      return{
+        idColumn: id,
+        nomeColumn: nome,
+        professorColumn: professor,
+        cargaHorariaColumn: cargaHoraria,
+        salaColumn: sala,
+        periodoColumn: periodo,
+        codigoColumn: codigo,
+      };
+    }
+
+    @override
+    String toString() {
+      return 'Disciplinas{nome: $nome, professor: $professor, cargaHoraria: $cargaHoraria, sala: $sala, periodo: $periodo, codigo: $codigo}';
+    }
 }
 
