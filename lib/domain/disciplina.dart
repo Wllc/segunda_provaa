@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Disciplina {
     int id = 0;
     String nome = '';
@@ -16,14 +18,13 @@ class Disciplina {
     static const String periodoColumn = "periodo";
     static const String codigoColumn = "codigo";
 
-    Disciplina({
-        this.id = 0,
-        required this.nome,
-        required this.professor,
-        required this.cargaHoraria,
-        required this.sala,
-        required this.periodo,
-        required this.codigo,}
+    Disciplina(
+         this.nome,
+         this.professor,
+         this.cargaHoraria,
+         this.sala,
+         this.periodo,
+         this.codigo,
     );
 
     Disciplina.fromMap(Map map){
@@ -38,7 +39,6 @@ class Disciplina {
 
     Map<String, dynamic> toMap() {
       return{
-        idColumn: id,
         nomeColumn: nome,
         professorColumn: professor,
         cargaHorariaColumn: cargaHoraria,

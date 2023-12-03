@@ -20,15 +20,25 @@ class TelaSobre extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tela Sobre'),
+        title: const Text('TELA SOBRE'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(10),
-        child: Center(
-          child: 
-          const Text('Autores: Nathan & Wallace')
+      body: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Desenvolvedores',
+                style: TextStyle(
+                  fontSize: 30
+                ),),
+              SizedBox(height: 20,),
+              Text('Nathan & Wallace',
+                style: TextStyle(
+                  fontSize: 20
+                ),),
+              SizedBox(height: 40,)
+            ],
               ),
-          ),
+          ), 
     );
   }
 }

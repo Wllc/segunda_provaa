@@ -32,8 +32,8 @@ class DisciplinaHelper {
                   "                                 ${Disciplina.nomeColumn} TEXT, "
                   "                                 ${Disciplina.professorColumn} TEXT, "
                   "                                 ${Disciplina.cargaHorariaColumn} INTEGER, "
-                  "                                 ${Disciplina.salaColumn} INTEGER,) "
-                  "                                 ${Disciplina.periodoColumn} INTEGER,) "
+                  "                                 ${Disciplina.salaColumn} INTEGER, "
+                  "                                 ${Disciplina.periodoColumn} INTEGER, "
                   "                                 ${Disciplina.codigoColumn} TEXT) "
                   );
         });

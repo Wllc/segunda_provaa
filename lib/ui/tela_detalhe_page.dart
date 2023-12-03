@@ -5,13 +5,13 @@ import 'package:segunda_prova/helpers/disciplina_helper.dart';
 class TelaDetalhes extends StatelessWidget {
   final int id;
 
-  const TelaDetalhes({Key? key, required this.id}) : super(key: key);
+  const TelaDetalhes({super.key, required this.id}); 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detalhes do Anime'),
+        title: const Text('Detalhes'),
       ),
       body: FutureBuilder<Disciplina?>(
         future: DisciplinaHelper().getDisciplina(id),
@@ -25,11 +25,11 @@ class TelaDetalhes extends StatelessWidget {
           } else {
             Disciplina disciplina = snapshot.data!;
             return Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('ID: ${disciplina.id}'),
+                  Text('ID: ${disciplina.id}',),
                   Text('Nome: ${disciplina.nome}'),
                   Text('Professor: ${disciplina.professor}'),
                   Text('Carga Horraria: ${disciplina.cargaHoraria}'),

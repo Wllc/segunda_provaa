@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:segunda_prova/ui/tela_altera_page.dart';
+import 'package:segunda_prova/ui/tela_detalhe_page.dart';
 
 import '../domain/disciplina.dart';
 import '../helpers/disciplina_helper.dart';
@@ -45,7 +47,7 @@ class _ListBodyState extends State<ListBody> {
       future: disciplinas,
       builder: (context, snapshot) {
         return snapshot.hasData  ? ListView.builder(
-                padding: const EdgeInsets.all(7),
+                padding: const EdgeInsets.all(10),
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, i) {
                   return ListItem(disciplina: snapshot.data![i]);
@@ -71,14 +73,23 @@ class ListItem extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Single Tap"),
           ));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TelaDetalhes(id: disciplina.id)),
+          );
         },
         onLongPress: () {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Long Press"),
           ));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TelaAltera(id: disciplina.id)),
+          );
         },
         child: ListTile(
         title: Text(disciplina.nome),
+        subtitle: Text(disciplina.professor),
     ),
       );
   }

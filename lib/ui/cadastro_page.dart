@@ -12,9 +12,9 @@ class CadastroPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Disciplinas"),
+        title: const Text("Cadastrar"),
       ),
-      body: FormDisciplinaBody(),
+      body: const FormDisciplinaBody(),
       backgroundColor: Theme.of(context).colorScheme.background,
     );
   }
@@ -43,17 +43,14 @@ class _FormDisciplinaBodyState extends State<FormDisciplinaBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
+    return SingleChildScrollView(
+      child: Form(
       key: _formKey,
-      child: Center(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "Cadastro de Disciplinas",
-              style: Theme.of(context).textTheme.displayLarge,
-              textAlign: TextAlign.center
-            ),
             CustomFormField(
               controller: nomeController,
               labelText: "Nome",
@@ -117,16 +114,17 @@ class _FormDisciplinaBodyState extends State<FormDisciplinaBody> {
                 return null;
               },
             ),
+            const SizedBox(height: 20,),
             TextButton(
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   Disciplina d = Disciplina(
-                    nome: nomeController.text,        
-                    professor: professorController.text,   
-                    cargaHoraria: int.parse(cargaHorariaController.text),
-                    sala: int.parse(salaController.text),        
-                    periodo: int.parse(periodoController.text),     
-                    codigo: codigoController.text,
+                    nomeController.text,        
+                    professorController.text,   
+                    int.parse(cargaHorariaController.text),
+                    int.parse(salaController.text),        
+                    int.parse(periodoController.text),     
+                    codigoController.text,
                     );
                   disciplinaHelper.saveDisciplina(d);
                   Navigator.pop(context);
@@ -143,6 +141,7 @@ class _FormDisciplinaBodyState extends State<FormDisciplinaBody> {
           ],
         ),
       ),
+    )
     );
   }
 }

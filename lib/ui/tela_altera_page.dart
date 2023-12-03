@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:segunda_prova/domain/disciplina.dart';
 import 'package:segunda_prova/helpers/disciplina_helper.dart';
+import 'package:segunda_prova/widgets/custom_form_field.dart';
 
 
 class TelaAltera extends StatefulWidget {
@@ -48,105 +49,110 @@ class _TelaAlteraState extends State<TelaAltera> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar disciplina'),
+        title: const Text('Editar'),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
             child: Column(
               children: [
-                TextFormField(
+                CustomFormField(
                   controller: _nomeController,
-                  decoration: const InputDecoration(labelText: 'Nome'),
-                  validator: (value) {
+                  labelText: 'Nome',
+                  validate_function: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Campo obrigatório';
                     }
                     return null;
                   },
                 ),
-                TextFormField(
+                CustomFormField(
                   controller: _professorController,
-                  decoration: const InputDecoration(labelText: 'Professor'),
-                  validator: (value) {
+                  labelText: 'Professor',
+                  validate_function: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Campo obrigatório';
                     }
                     return null;
                   },
                 ),
-                TextFormField(
+                CustomFormField(
                   controller: _cargaHorariaController,
-                  decoration: const InputDecoration(labelText: 'Carga Horaria'),
-                  validator: (value) {
+                  labelText: 'Carga Horaria',
+                  keyboard_type: TextInputType.number,
+                  validate_function: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Campo obrigatório';
                     }
                     return null;
                   },
                 ),
-                TextFormField(
+                CustomFormField(
                   controller: _salaController,
-                  decoration: const InputDecoration(
-                      labelText: 'Sala'),
-                  validator: (value) {
+                  labelText: 'Sala',
+                  keyboard_type: TextInputType.number,
+                  validate_function: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Campo obrigatório';
                     }
                     return null;
                   },
                 ),
-                TextFormField(
+                CustomFormField(
                   controller: _periodoController,
-                  decoration: const InputDecoration(labelText: 'Periodo'),
-                  validator: (value) {
+                  labelText: 'Periodo',
+                  keyboard_type: TextInputType.number,
+                  validate_function: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Campo obrigatório';
                     }
                     return null;
                   },
                 ),
-                TextFormField(
+                CustomFormField(
                   controller: _codigoController,
-                  decoration:
-                      const InputDecoration(labelText: 'Codigo'),
-                  validator: (value) {
+                  labelText: 'Codigo',
+                  validate_function: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Campo obrigatório';
                     }
                     return null;
                   },
-                  keyboardType: TextInputType.datetime,
                 ),
-                ElevatedButton(
+                const SizedBox(height: 20,),
+                TextButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       // Atualizar o disciplina no banco de dados
                       await _disciplinaHelper.updateDisciplina(
                         Disciplina(
-                          id: widget.id,
-                          nome: _nomeController.text,
-                          professor: _professorController.text,
-                          cargaHoraria: int.parse(_cargaHorariaController.text),
-                          sala: int.parse(_salaController.text),
-                          periodo: int.parse(_periodoController.text),
-                          codigo:_codigoController.text,
+                          _nomeController.text,
+                          _professorController.text,
+                          int.parse(_cargaHorariaController.text),
+                          int.parse(_salaController.text),
+                          int.parse(_periodoController.text),
+                          _codigoController.text,
                         ),
                       );
 
+                      // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Alteração realizada com sucesso!'),
                         ),
                       );
-
-                      //Navigator.popUntil(context, ModalRoute.withName('/'));
+                      // ignore: use_build_context_synchronously
                       Navigator.pop(context);
                     }
                   },
-                  child: const Text('Confirmar'),
+                  style: TextButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                  ),
+                  child: Text('Confirmar', 
+                  style: Theme.of(context).textTheme.labelLarge,)
+                  
                 ),
               ],
             ),

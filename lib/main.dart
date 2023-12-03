@@ -20,12 +20,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: TextTheme(
           displayLarge: TextStyle(
-            fontSize: 48,
+            fontSize: 30,
             fontWeight: FontWeight.w300,
             color: Theme.of(context).colorScheme.onSurface,
           ),
           labelLarge: TextStyle(
-            fontSize: 22,
+            fontSize: 25,
             fontWeight: FontWeight.bold,
             color: Theme.of(context).colorScheme.onPrimary,
           ),
