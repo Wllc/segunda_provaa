@@ -126,16 +126,16 @@ class _TelaAlteraState extends State<TelaAltera> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       // Atualizar o disciplina no banco de dados
-                      await _disciplinaHelper.updateDisciplina(
-                        Disciplina(
-                          _nomeController.text,
-                          _professorController.text,
-                          int.parse(_cargaHorariaController.text),
-                          int.parse(_salaController.text),
-                          int.parse(_periodoController.text),
-                          _codigoController.text,
-                        ),
+                      Disciplina d = Disciplina(
+                          nomeController.text,
+                          professorController.text,
+                          int.parse(cargaHorariaController.text),
+                          int.parse(salaController.text),
+                          int.parse(periodoController.text),
+                          codigoController.text
                       );
+                      d.id = widget.id;
+                      await disciplinaHelper.updateDisciplina(d);
 
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(
